@@ -1,0 +1,12 @@
+# print("Hello World")
+# print("Have a nice day "+input("What's ur name"))
+# print("Hello"+" "+"\nWorld")
+# L=input("LALALALALALA") 
+# print(L)
+# L="jk"
+# L=len(L)
+# print(L)
+print("greetings")
+city=input("Which city did you grow up in?\n")
+pet=input("What's the name of your pet\n")
+print("Your band name is "+city+" "+pet)

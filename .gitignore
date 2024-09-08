@@ -45,3 +45,5 @@ env/
 .mypy_cache/
 
 sample code/
+
+data.txt
