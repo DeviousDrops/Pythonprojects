@@ -10,7 +10,7 @@ def correct(t, x, y, answer):
 screen = turtle.Screen()
 screen.title("U.S. States Game")
 
-img = "blank_states_img.gif"
+img = "blankstates.gif"
 screen.addshape(img)
 screen.bgpic(img)
 
