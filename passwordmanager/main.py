@@ -1,9 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
-import 
+import pyperclip
 import random
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def pwdgen():
+    rpass=''
     p_entry.delete(0,END)
     letters = [
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
@@ -13,9 +14,11 @@ def pwdgen():
     ]
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
-    passele=letters+numbers+symbols
+    combined=letters+numbers+symbols
     for i in range(15):
-        p_entry.insert(0,passele[random.randint(0, len(passele) - 1)])
+        rpass+=combined[random.randint(0, len(combined) - 1)]
+    p_entry.insert(0,rpass)
+    pyperclip.copy(rpass)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def delentry():
     w_entry.delete(0,END)
