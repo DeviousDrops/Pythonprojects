@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import pyperclip
 import random
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def pwdgen():
     rpass=''
@@ -23,10 +24,20 @@ def pwdgen():
 def delentry():
     w_entry.delete(0,END)
     p_entry.delete(0,END)
+
+
 def save():
+
     website=w_entry.get()
     email=u_entry.get()
     password=p_entry.get()
+    new_data={
+        website: {
+            "email":email,
+            "password":password,
+        }
+    }
+
     if len(password)<8:
         messagebox.showwarning("Warning", "Password must be at least 8 characters long.")
         delentry()
@@ -36,10 +47,22 @@ def save():
     elif website=='':
         messagebox.showwarning("Warning", "Enter the website name.")
         delentry()
-    else:    
-        with open("data.txt","a") as data:
-            data.write(f"{website} | {email} | {password}\n")
-            delentry()
+    else:  
+        try:
+            with open("data.json","r") as dfile:
+                data=json.load(dfile)
+             
+        except FileNotFoundError:
+            with open("data.json","w") as dfile:
+                json.dump(new_data,dfile,indent=4)
+                delentry()
+        else:
+            data.update(new_data)    
+
+            with open("data.json","w") as dfile:
+                json.dump(data,dfile,indent=4)
+                delentry()
+
         messagebox.showinfo("Success", "Details have been saved!")
 
 # ---------------------------- UI SETUP ------------------------------- #
