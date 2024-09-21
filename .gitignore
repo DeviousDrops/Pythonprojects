@@ -44,6 +44,8 @@ env/
 # MyPy cache
 .mypy_cache/
 
-sample code/
+samplecode/
 
 data.txt
+
+random/
