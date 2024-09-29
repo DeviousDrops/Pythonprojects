@@ -44,8 +44,12 @@ env/
 # MyPy cache
 .mypy_cache/
 
+#testcodes
 samplecode/
 
+#personaldata
 data.txt
+*.json
 
+#same as test codes
 random/

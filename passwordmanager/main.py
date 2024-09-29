@@ -65,6 +65,31 @@ def save():
 
         messagebox.showinfo("Success", "Details have been saved!")
 
+# ----------------------------- SEARCH -------------------------------- #
+
+def srch():
+    website=w_entry.get()
+    try:
+        with open("data.json","r") as dfile:
+                data=json.load(dfile)
+    except FileNotFoundError:
+        messagebox.showinfo("Failure", "The details were not found")
+    else:
+        if(website in data):
+            em= data[website]["email"]
+            pw=data[website]["password"]
+            messagebox.showinfo("Success", f"Email/username:\t{em}\nPassword:\t{pw}")
+        else:
+            messagebox.showinfo("Failure", "The details were not found")
+
+
+    
+
+    
+
+
+    
+
 # ---------------------------- UI SETUP ------------------------------- #
 window=Tk()
 window.title("Password Manager")
@@ -76,18 +101,20 @@ canvas.grid(column=1,row=0)
 Web=Label(text="Website:")
 user=Label(text="Email/Username:")
 pwd=Label(text="Password:")
-w_entry=Entry(width=35)
+w_entry=Entry(width=21)
 u_entry=Entry(width=35)
 p_entry=Entry(width=21)
 Web.grid(column=0,row=1, sticky="e")
 user.grid(column=0,row=2, sticky="e")
 pwd.grid(column=0,row=3, sticky="e")
-w_entry.grid(column=1,row=1,columnspan=2, sticky="ew")
+w_entry.grid(column=1,row=1,padx=1, sticky="ew")
 u_entry.grid(column=1,row=2,columnspan=2, sticky="ew")
 p_entry.grid(column=1,row=3,padx=1, sticky="ew")
 u_entry.insert(0,"ikartik.reddy@gmail.com")#change default email here
-generate=Button(command=pwdgen,text="Generate Password",padx=1,borderwidth=0.5,bg="white")
+generate=Button(command=pwdgen,text="Generate Password",padx=1,pady=0.5,borderwidth=0.5,bg="white")
 generate.grid(column=2,row=3)
+search=Button(command=srch,text="Search",padx=1,borderwidth=0.5,pady=0.5,bg="white")
+search.grid(column=2,row=1,sticky="ew")
 Addpwd=Button(text="Add",width=36,borderwidth=0.5,bg="white",command=save)
 Addpwd.grid(column=1,row=4,columnspan=2, sticky="ew")
 
